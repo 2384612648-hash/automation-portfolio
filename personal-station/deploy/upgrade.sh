@@ -29,7 +29,7 @@ echo '4/5 Recreate zero and check version'
 cd "$target"
 docker compose up -d --no-build --pull never zero
 healthy=0
-for i in $(seq 1 30); do
+for ((attempt=1; attempt<=30; attempt++)); do
   if curl -fs --max-time 3 http://127.0.0.1:8765/api/health | python3 -c 'import json,sys; assert json.load(sys.stdin)["version"]==sys.argv[1]' "$version" 2>/dev/null; then
     healthy=1
     break
