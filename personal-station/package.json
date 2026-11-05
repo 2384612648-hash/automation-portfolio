@@ -1,0 +1,22 @@
+{
+  "name": "personal-station",
+  "version": "0.5.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test tests/tools.test.mjs tests/daily.test.mjs tests/discovery.test.mjs tests/today.test.mjs tests/studio.test.mjs"
+  },
+  "dependencies": {
+    "diff": "8.0.4",
+    "dompurify": "3.4.17",
+    "fflate": "0.8.3",
+    "lightweight-charts": "5.2.1",
+    "marked": "18.1.2",
+    "pdf-lib": "1.17.1",
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

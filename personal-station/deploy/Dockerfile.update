@@ -1,0 +1,12 @@
+FROM zero-station:local
+USER root
+COPY vendor/wheels /tmp/zero-wheels
+RUN pip install --no-cache-dir --no-index --find-links=/tmp/zero-wheels ctranslate2==4.8.4 sentencepiece==0.2.2 && rm -rf /tmp/zero-wheels
+COPY models /app/models
+COPY vendor/licenses /app/licenses
+COPY server.py live_data.py feed_service.py feed_sources.py safe_http.py proxy_service.py translation_service.py backup_service.py /app/
+COPY --chmod=755 bin/mihomo /app/bin/mihomo
+COPY public /app/public
+COPY deploy /app/deploy
+COPY THIRD_PARTY_NOTICES.md /app/THIRD_PARTY_NOTICES.md
+USER 10001:10001

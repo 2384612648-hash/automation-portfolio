@@ -1,0 +1,76 @@
+/* Compact interface: yellow signals, charcoal panels, quiet motion. */
+:root{--bg:#0b0c10;--sidebar:#101116;--surface:#13151b;--surface-raised:#1c1f27;--ink:#f0f1ec;--muted:#a5a9b4;--subtle:#989da9;--line:#30343e;--accent:#f5ed35;--accent-rgb:245,237,53;--violet:#5de0e6;--pink:#fa727f;--amber:#f5ed35;--radius:3px;--signal:#f5ed35}
+:root[data-theme=light]{--bg:#f3f2eb;--sidebar:#e9e8df;--surface:#fffef8;--surface-raised:#e9e8df;--ink:#181b23;--muted:#535963;--subtle:#626772;--line:#c8c9c0;--accent:#665800;--accent-rgb:102,88,0;--violet:#006a75;--pink:#a52b42;--amber:#665800;--signal:#f5ed35}
+body{background:var(--bg)}
+.topbar,[data-theme=light] .topbar{position:static;background:var(--bg)}
+.brand small{font-size:10px;letter-spacing:3px}
+.brand-mark{color:var(--accent)}
+.brand:hover .brand-mark svg{filter:none}
+.nav-label{font-size:12px;color:var(--muted);margin-top:32px}
+.nav-item{border-radius:2px;font-size:14px;color:var(--muted)}
+.nav-item.active,[data-theme=light] .nav-item.active{background:rgba(var(--accent-rgb),.08);border-color:rgba(var(--accent-rgb),.3);color:var(--accent)}
+.nav-item.active:before{box-shadow:none}
+.page-heading h1{font-size:30px;letter-spacing:0;margin:0;font-weight:750}
+.page-heading{margin-bottom:24px}
+.module-panel,.tool-workspace,.dialog,.tools-toolbar,.tool-card,.bookmark-card,.empty-state{background:var(--surface);border-color:var(--line);border-radius:3px;box-shadow:none}
+.module-panel:before{top:0;left:20px;width:34px;height:2px;opacity:1;background:var(--accent)}
+.section-title h2,.tool-directory .section-title h2{font-size:18px;letter-spacing:0}
+.section-title h2 span{font-size:12px;color:var(--muted)}
+.section-heading{gap:10px}
+.button,.chip,.theme-select,.search-box,input,select,textarea,.tool-switcher,.tool-switcher a,.tool-card-link{border-radius:3px}
+.primary,[data-theme=light] .primary{background:var(--signal);border-color:var(--signal);color:#171911;box-shadow:none;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
+.primary:hover,[data-theme=light] .primary:hover{background:#fff85b;color:#171911;box-shadow:none}
+.primary:after{display:none}
+.secondary,[data-theme=light] .secondary{background:var(--surface-raised);color:var(--ink);border-color:var(--line)}
+.chip.active,.tools-toolbar .chip.active,[data-theme=light] .chip.active,.tool-switcher a.active,[data-theme=light] .tool-switcher a.active{color:var(--accent);background:rgba(var(--accent-rgb),.08);border-color:rgba(var(--accent-rgb),.45)}
+input:focus,textarea:focus,select:focus{outline-color:var(--accent);border-color:var(--accent)}
+::selection,[data-theme=light] ::selection{background:var(--signal);color:#13151b}
+.tools-toolbar,.filters,.news-controls{position:static;top:auto;z-index:auto;box-shadow:none}
+.tools-toolbar{margin-bottom:24px;border-color:var(--line)}
+.tool-card:before{display:none}
+.tool-card:hover,[data-theme=light] .tool-card:hover,.bookmark-card:hover,[data-theme=light] .bookmark-card:hover{background:var(--surface-raised);border-color:var(--accent);box-shadow:none}
+.tool-card p{color:var(--muted);font-size:13px;line-height:1.7}
+.tool-card h3{font-size:16px}
+.tool-card-bottom{border-color:var(--line);font-size:12px}
+.tool-symbol{background:transparent;color:var(--tool-color)}
+.tool-note{border-top:1px solid var(--line);margin:0 18px;padding:10px 0;color:var(--muted);font-size:12px}
+.tool-note p{font-size:12px;margin:10px 0 0}
+summary{cursor:pointer;min-height:32px;line-height:32px}
+.usage-note{color:var(--muted);font-size:13px;margin:20px 0}
+.usage-note p{line-height:1.8}
+.literary-panel{background:var(--surface);border-color:var(--line);border-radius:3px;box-shadow:none}
+.literary-panel:before{color:var(--accent);opacity:.08}
+.literary-top .eyebrow{font-family:inherit;font-size:14px;font-weight:600;line-height:1.5;letter-spacing:0;color:var(--accent)}
+.quote-credit{display:block}
+.quote-source{margin-top:10px;font:12px/1.7 "Segoe UI","Microsoft YaHei",sans-serif;color:var(--muted)}
+.quote-source small{display:block}
+.quote-source .quote-original{margin-top:10px}
+.market-tile,.sector-row,.chart-head,.market-analysis,.data-badge{border-radius:3px}
+.market-tile.active{border-color:var(--accent)}
+.feed-caption{color:var(--muted);line-height:1.7}
+.mobile-dock{display:none}
+.online-card .tool-card-link{height:auto}
+@media(max-width:700px){
+  html{scroll-padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+  .workspace{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+  main{padding:24px 16px 16px}
+  .topbar{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+  .page-heading h1{font-size:27px}
+  .section-title h2,.tool-directory .section-title h2{font-size:17px}
+  .module-panel{padding:20px 16px}
+  .tool-card h3{font-size:15px}.tool-card p{font-size:13px}
+  .tool-card-bottom,.tool-directory .tool-card-bottom{font-size:12px}
+  .tool-switcher a{font-size:12px}
+  .search-box input,.tools-toolbar .search-box input,input,select,textarea{font-size:16px}
+  .theme-select{font-size:13px;width:88px}
+  .mobile-dock{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;inset:auto 0 0;z-index:20;background:var(--sidebar);border-top:1px solid var(--line);padding:6px max(8px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));box-shadow:0 -8px 24px #0002}
+  .mobile-dock>a,.mobile-dock>button{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;min-height:54px;min-width:0;padding:5px 0;background:transparent;color:var(--muted);font-size:12px;text-decoration:none;transition:color .18s,background .18s}
+  .mobile-dock .active{color:var(--accent);background:rgba(var(--accent-rgb),.06)}
+  .mobile-dock .active:before{content:"";position:absolute;top:-7px;left:25%;right:25%;height:2px;background:var(--accent)}
+  .mobile-dock svg{width:21px;height:21px}
+  .back-icon{transform:rotate(180deg)}
+  .mobile-dock button:disabled{opacity:.3}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom))}
+  .quick-help{display:none}
+}
+@media(prefers-reduced-motion:reduce){.mobile-dock>a,.mobile-dock>button{transition:none}}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0c10">
+  <meta name="description" content="零域 ZERO：你的私人信息库与本地工具台。">
+  <title>零域 ZERO · 个人数字空间</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script src="/theme.js"></script>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/today.css">
+  <link rel="stylesheet" href="/interface.css">
+  <link rel="stylesheet" href="/feeds.css">
+  <link rel="stylesheet" href="/studio.css">
+  <link rel="stylesheet" href="/hud.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到内容</a>
+  <aside class="sidebar" id="sidebar" aria-label="主导航">
+    <button id="menu-close" class="icon-button mobile-menu sidebar-close" type="button" aria-label="收起导航"><span data-icon="x"></span></button>
+    <a class="brand" href="#today" aria-label="零域 ZERO 首页"><span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 5h14l7 7v16l-7 7H13l-7-7V12Z"/><path d="M30 8 10 32"/></svg></span><span>零域<small>ZERO</small></span></a>
+    <nav id="navigation"></nav>
+    <div class="sidebar-footer"><button id="data-button" class="nav-item" type="button"><span data-icon="database"></span>数据中心</button></div>
+  </aside>
+  <div id="nav-backdrop" class="nav-backdrop" aria-hidden="true"></div>
+  <div class="workspace">
+    <header class="topbar"><div class="topbar-start"><button id="menu-button" class="icon-button mobile-menu" type="button" aria-label="展开导航" aria-expanded="false"><span data-icon="menu"></span></button><span class="breadcrumb"><span class="breadcrumb-root">ZERO</span><span>/</span><b id="breadcrumb">信息库</b></span></div><button id="quick-open" class="quick-open" type="button" aria-label="快捷搜索工具与收藏" aria-haspopup="dialog"><span data-icon="search"></span><span>搜索工具与收藏</span><kbd>Ctrl K</kbd></button><select id="theme-mode" class="theme-select" aria-label="外观主题"><option value="dark">暗色</option><option value="light">亮色</option><option value="system">跟随系统</option></select></header>
+    <main id="main" tabindex="-1"></main>
+    <nav class="mobile-dock" aria-label="快捷导航">
+      <button id="route-back" type="button" aria-label="返回上一页" disabled><span data-icon="arrow" class="back-icon"></span><span>返回</span></button>
+      <a href="#today" data-dock="today"><span data-icon="graph"></span><span>今日</span></a>
+      <a href="#all" data-dock="all"><span data-icon="bookmark"></span><span>信息库</span></a>
+      <a href="#tools" data-dock="tools"><span data-icon="tools"></span><span>工具台</span></a>
+      <button id="dock-menu" type="button" aria-label="更多导航" aria-expanded="false"><span data-icon="menu"></span><span>更多</span></button>
+    </nav>
+  </div>
+  <dialog id="bookmark-dialog" class="dialog" aria-labelledby="form-heading">
+    <form id="bookmark-form">
+      <div class="dialog-heading"><div><h2 id="form-heading">收录链接</h2></div><button class="icon-button" type="button" data-close="bookmark-dialog" aria-label="关闭"><span data-icon="x"></span></button></div>
+      <label>链接 <span class="required">*</span><input name="url" type="url" required maxlength="4096" placeholder="https://…" autocomplete="url"></label>
+      <label>标题 <span class="required">*</span><input name="title" required maxlength="300" placeholder="给这条内容一个好找的名字"></label>
+      <div class="form-row"><label>类型<select name="kind"><option value="article">文章 / 网页</option><option value="video">视频</option><option value="project">开源项目</option><option value="other">其他</option></select></label><label>标签<input name="tags" maxlength="800" placeholder="AI, C++, 学习（逗号分隔）"></label></div>
+      <label>备注<textarea name="note" rows="4" maxlength="20000" placeholder="值得留下的原因，或准备怎样使用它…"></textarea></label>
+      <div class="check-row"><label class="checkbox"><input name="starred" type="checkbox">设为星标</label><label class="checkbox"><input name="is_read" type="checkbox">已经看过</label></div>
+      <p class="form-error" id="form-error" role="alert"></p>
+      <div class="dialog-actions"><button type="button" class="button secondary" data-close="bookmark-dialog">取消</button><button type="submit" class="button primary" id="save-bookmark">保存到信息库</button></div>
+    </form>
+  </dialog>
+  <dialog id="data-dialog" class="dialog data-dialog" aria-labelledby="data-heading">
+    <div class="dialog-heading"><div><h2 id="data-heading">数据中心</h2></div><button class="icon-button" type="button" data-close="data-dialog" aria-label="关闭"><span data-icon="x"></span></button></div>
+    <p class="muted">信息与备注保存在当前零域服务器中。导出一份 JSON，即可带到另一台零域中继续使用。</p>
+    <div class="data-option"><span class="data-number" aria-hidden="true">01</span><div><h3>完整数据导出</h3><p>包含备注、标签和回收区内容，可重新导入。</p></div><button class="button secondary" id="export-json" type="button">导出 JSON</button></div>
+    <div class="data-option"><span class="data-number" aria-hidden="true">02</span><div><h3>笔记导出</h3><p>将全部有效内容导出为 Markdown，带到笔记软件。</p></div><button class="button secondary" id="export-md" type="button">导出 Markdown</button></div>
+    <div class="data-option"><span class="data-number" aria-hidden="true">03</span><div><h3>数据导入</h3><p>读取本站导出的 JSON，兼容原拾光导出文件。相同链接自动跳过。</p></div><button class="button secondary" id="import-json" type="button">选择文件</button><input id="import-file" type="file" accept=".json,application/json" hidden></div>
+    <div class="data-option"><span class="data-number" aria-hidden="true">04</span><div><h3>服务器快照</h3><p>每天自动保存收藏与信息流的数据库快照，保留最近 7 份；下载后可在本机再留一份。</p><p id="backup-status" class="muted" role="status"></p><div id="backup-list" class="backup-list"></div></div><button class="button secondary" id="backup-create" type="button">立即备份</button></div>
+    <p id="data-result" role="status" class="muted"></p>
+    <div class="notice">本站通过私人网络访问。PDF、图片和文本工具的输入仅在浏览器中处理，不写入收藏数据库。</div>
+  </dialog>
+  <dialog id="quick-dialog" class="dialog quick-dialog" aria-labelledby="quick-heading">
+    <div class="dialog-heading"><div><h2 id="quick-heading">搜索</h2></div><button class="icon-button" id="quick-close" aria-label="关闭快捷搜索" type="button"><span data-icon="x"></span></button></div>
+    <label class="search-box quick-search-box"><span data-icon="search"></span><input type="search" id="quick-query" aria-label="搜索全部工具与收藏" placeholder="工具、标题、标签或备注…" autocomplete="off" maxlength="300"></label>
+    <p id="quick-count" class="muted" role="status"></p><div id="quick-results"></div>
+    <div class="quick-help"><span><kbd>↑</kbd><kbd>↓</kbd> 选择 <kbd>Enter</kbd> 打开</span><span><kbd>Esc</kbd> 关闭 · 仅搜索本站</span></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript><p>请启用 JavaScript 以使用零域。</p></noscript>
+</body>
+</html>

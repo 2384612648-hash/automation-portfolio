@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+personal-station/public/app.js -whitespace
+personal-station/THIRD_PARTY_NOTICES.md -whitespace
+personal-station/vendor/licenses/** -whitespace

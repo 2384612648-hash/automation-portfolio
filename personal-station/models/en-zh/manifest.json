@@ -1,0 +1,36 @@
+{
+  "repository": "gaudi/opus-mt-en-zh-ctranslate2",
+  "revision": "dcd22168f08b99dd34c62bc2195e31dc2f04e90b",
+  "files": [
+    {
+      "file": "config.json",
+      "bytes": 215,
+      "sha256": "ce02c0c0d02f285d2ff34c80b0867ccb5c4a3b250a275e6d1d2884f5499a6e46"
+    },
+    {
+      "file": "model.bin",
+      "bytes": 155502615,
+      "sha256": "f24c2bb82368f7de0196882de1d8b644d2aa54ae2439c3142f263de8a64ea2a9"
+    },
+    {
+      "file": "shared_vocabulary.json",
+      "bytes": 1303887,
+      "sha256": "37314a6abb25ed8f8497498aeeb31fcea98de892bf00ff7c2e8c966b26fe0b82"
+    },
+    {
+      "file": "source.spm",
+      "bytes": 806435,
+      "sha256": "5775ddc9e3ff2fae91554da56468ad35ff56edaba870fea74447bc7234bfdaa8"
+    },
+    {
+      "file": "target.spm",
+      "bytes": 804600,
+      "sha256": "81dc94efa84e4025ef38d25d5d07429fe41e3eb29d44003f1db6fe98487b0052"
+    },
+    {
+      "file": "README.md",
+      "bytes": 6720,
+      "sha256": "e26c20de87b00a2a1330f6736a59e0f2d8b4aae3109064da1b8433242f213679"
+    }
+  ]
+}
