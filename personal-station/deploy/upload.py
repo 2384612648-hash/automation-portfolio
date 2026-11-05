@@ -34,15 +34,16 @@ def main():
             parser.error('Run python deploy/fetch_assets.py before --assets')
     if not files:
         parser.error('No tracked source; stage the reviewed source with git add first')
-    ssh = ['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15']
+    ssh = ['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15',
+           '-o', 'ServerAliveInterval=15', '-o', 'ServerAliveCountMax=3']
     if args.identity:
         ssh += ['-i', args.identity, '-o', 'IdentitiesOnly=yes']
     if args.host_key_alias:
         ssh += ['-o', 'HostKeyAlias=' + args.host_key_alias]
     path = shlex.quote(args.destination)
-    remote = 'mkdir -p -- ' + path + ' && tar -xf - -C ' + path
+    remote = 'mkdir -p -- ' + path + ' && tar -xzf - -C ' + path
     with tempfile.TemporaryFile() as archive:
-        with tarfile.open(fileobj=archive, mode='w') as bundle:
+        with tarfile.open(fileobj=archive, mode='w:gz') as bundle:
             for file in sorted(set(files)):
                 if file.is_file():
                     def stable_time(info):
@@ -50,6 +51,7 @@ def main():
                         return info
                     bundle.add(file, arcname=file.relative_to(ROOT).as_posix(), filter=stable_time)
         archive.seek(0)
+        print('Uploading compressed source to ~/' + args.destination, flush=True)
         subprocess.run(ssh + [args.server, remote], stdin=archive, check=True)
     print('Uploaded to ~/' + args.destination + '; run its deploy/upgrade.sh with sudo after review.')
 
