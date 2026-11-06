@@ -60,6 +60,10 @@ function navItem(key, label, symbol, count) {
 }
 function renderNav() {
   const current = route();
+  $$('[data-top-route]').forEach(link => {
+    const active = link.dataset.topRoute === current || (link.dataset.topRoute === 'tools' && current.startsWith('tools/'));
+    if (active) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
+  });
   const section = current.startsWith('tools') ? 'tools' : ['today','feeds'].includes(current) ? 'today' : current === 'proxy' ? 'tools' : 'all';
   $$('[data-dock]').forEach(link => {
     const active = link.dataset.dock === section;
@@ -155,6 +159,7 @@ function render() {
   closeMenu(); renderNav();
   if (!loaded) { main.innerHTML = '<div class="loading">正在连接零域…</div>'; return; }
   const current = route();
+  main.dataset.route = current;
   main.dataset.tool = '';
   if (current === 'today') {
     $('#breadcrumb').textContent = '今日';
@@ -326,7 +331,8 @@ $('#import-file').onchange = async event => {
   } catch (error) { $('#data-result').textContent = error.message; }
   finally { button.disabled = false; }
 };
-const mobileNavigation = window.matchMedia('(max-width: 700px)');
+// The full navigation is a drawer on desktop and mobile.
+const mobileNavigation = window.matchMedia('(min-width: 0px)');
 let menuTrigger = $('#menu-button');
 function syncSidebar() {
   const open = mobileNavigation.matches && $('#sidebar').classList.contains('open');

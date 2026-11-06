@@ -5,7 +5,7 @@
   function apply() {
     const light = mode === 'light' || (mode === 'system' && media.matches);
     document.documentElement.dataset.theme = light ? 'light' : 'dark';
-    document.querySelector('meta[name="theme-color"]').content = light ? '#edf3f5' : '#060e16';
+    document.querySelector('meta[name="theme-color"]').content = light ? '#f6f1f4' : '#101014';
   }
   apply(); media.addEventListener('change', apply);
   document.addEventListener('DOMContentLoaded', () => {

@@ -269,7 +269,7 @@ def make_server(host, port, data_dir, public_origin="", background=False):
                 return self.reply(403, {"error": "访问地址不被允许"})
             path = urlsplit(self.path).path
             if path == "/api/health":
-                return self.reply(200, {"app": "personal-station", "version": "0.5.1"})
+                return self.reply(200, {"app": "personal-station", "version": "0.6.0"})
             if path == "/api/state":
                 return self.reply(200, {"bookmarks": store.all(), "token": token})
             if path == '/api/feeds/digest':

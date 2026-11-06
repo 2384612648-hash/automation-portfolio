@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/interface.css">
   <link rel="stylesheet" href="/feeds.css">
   <link rel="stylesheet" href="/studio.css">
-  <link rel="stylesheet" href="/hud.css">
+  <link rel="stylesheet" href="/nocturne.css?v=0.6.0">
   <script src="/app.js" defer></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
   </aside>
   <div id="nav-backdrop" class="nav-backdrop" aria-hidden="true"></div>
   <div class="workspace">
-    <header class="topbar"><div class="topbar-start"><button id="menu-button" class="icon-button mobile-menu" type="button" aria-label="展开导航" aria-expanded="false"><span data-icon="menu"></span></button><span class="breadcrumb"><span class="breadcrumb-root">ZERO</span><span>/</span><b id="breadcrumb">信息库</b></span></div><button id="quick-open" class="quick-open" type="button" aria-label="快捷搜索工具与收藏" aria-haspopup="dialog"><span data-icon="search"></span><span>搜索工具与收藏</span><kbd>Ctrl K</kbd></button><select id="theme-mode" class="theme-select" aria-label="外观主题"><option value="dark">暗色</option><option value="light">亮色</option><option value="system">跟随系统</option></select></header>
+    <header class="topbar"><div class="topbar-start"><a class="nocturne-wordmark" href="#today" aria-label="零域首页">zero<sup>®</sup></a><span class="breadcrumb" hidden><b id="breadcrumb">今日</b></span></div><nav class="top-navigation" aria-label="主导航"><a href="#today" data-top-route="today">今日</a><a href="#feeds" data-top-route="feeds">信息流</a><a href="#all" data-top-route="all">信息库</a><a href="#tools" data-top-route="tools">工具</a></nav><div class="topbar-actions"><button id="quick-open" class="quick-open" type="button" aria-label="快捷搜索工具与收藏" aria-haspopup="dialog"><span data-icon="search"></span></button><select id="theme-mode" class="theme-select" aria-label="外观主题"><option value="dark">暗色</option><option value="light">亮色</option><option value="system">系统</option></select><button id="menu-button" class="icon-button mobile-menu" type="button" aria-label="更多导航" aria-expanded="false"><span data-icon="menu"></span></button></div></header>
     <main id="main" tabindex="-1"></main>
     <nav class="mobile-dock" aria-label="快捷导航">
       <button id="route-back" type="button" aria-label="返回上一页" disabled><span data-icon="arrow" class="back-icon"></span><span>返回</span></button>
